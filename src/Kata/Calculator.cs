@@ -7,6 +7,12 @@ public class Calculator
             return 0;            
         }
 
-        return 1;
+        var array = s.Split(",");
+        var sum = 0;
+        foreach (var item in array)
+        {
+            sum += int.Parse(item);
+        }
+        return sum;
     }
 }
