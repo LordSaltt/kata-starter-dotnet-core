@@ -20,11 +20,12 @@ public class Calculator
             s = splitText[1];
         }
 
-        var elements = s.Split(delimiters,StringSplitOptions.None).Select(int.Parse);
+        var elements = s.Split(delimiters,StringSplitOptions.None).Select(int.Parse).ToList();
 
-        if (elements.Any(x=> x <0) )
+        var negatives = elements.Where(x => x < 0);
+        if (negatives.Any(x=> x <0) )
         {
-            throw new Exception("negatives not allowed: -1");
+            throw new Exception("negatives not allowed: " + string.Join(",",negatives));
         }
         
         return elements.Sum();

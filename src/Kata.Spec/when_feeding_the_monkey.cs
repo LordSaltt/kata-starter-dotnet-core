@@ -93,6 +93,18 @@ namespace Kata.Spec
         private static Exception _result;
     }
 
+    public class when_input_has_multi_negatives
+    {
+        Establish _context = () => { _systemUnderTest = new Calculator(); };
+        private Because of = () => { _result = Catch.Exception(() => _systemUnderTest.Add("1,-2,-3")); };
+        
+
+        It should_return_exception = () => { _result.Message.Should().Be("negatives not allowed: -2,-3"); };
+        private static Calculator _systemUnderTest;
+        private static Exception _result;
+    };
+      
+
   
     // Given the user input contains one negative number when calculating the sum then it should throw an exception "negatives not allowed: x" (where x is the negative number).
     // Given the user input contains multiple negative numbers mixed with positive numbers when calculating the sum then it should throw an exception "negatives not allowed: x, y, z" (where x, y, z are only the negative numbers).
