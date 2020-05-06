@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 public class Calculator
 {
     public int Add(string s = "")
@@ -7,12 +10,7 @@ public class Calculator
             return 0;            
         }
 
-        var array = s.Split(",");
-        var sum = 0;
-        foreach (var item in array)
-        {
-            sum += int.Parse(item);
-        }
-        return sum;
+        var elements = s.Split(new []{"\n",","},StringSplitOptions.None).Select(int.Parse);
+        return elements.Sum();
     }
 }
